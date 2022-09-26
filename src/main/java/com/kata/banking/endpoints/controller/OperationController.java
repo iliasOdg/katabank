@@ -29,6 +29,15 @@ public class OperationController implements OperationApi {
     @Autowired
     private AccountService accountService;
 
+    /**
+     * Opérations sur le compte : en fonction du montant, on détermine
+     * si c'est un dépôt ou un retrait.
+     *
+     * @param newOperationRequest Montant et numéro du compte.
+     * @return L'opération effectuée
+     * @throws AccountNotFoundException: Si aucun compte correspond au numéro fourni
+     * @throws InsufficientFundException Si les fonds sont insuffisants pour un retrait
+     */
     @Override
     public ResponseEntity<Operation> executeOperation(NewOperationRequest newOperationRequest) throws AccountNotFoundException, InsufficientFundException {
         Operation operation = modelMapper.map(newOperationRequest, Operation.class);
@@ -48,6 +57,16 @@ public class OperationController implements OperationApi {
     }
 
 
+    /**
+     * Recupère la liste des opérations sur un compte
+     * trié par ordre.
+     *
+     * @param accountNumber numéro du compte
+     * @param page          nombre de pages
+     * @param size          nombre d'éléments par page
+     * @return La liste des opérations
+     * @throws AccountNotFoundException Si aucun compte correspond au numéro fourni
+     */
     @Override
     public List<Operation> getAllOperationForAClient(String accountNumber, int page, int size) throws AccountNotFoundException {
         Optional<Account> optionalAccount = accountService.getAccount(accountNumber);

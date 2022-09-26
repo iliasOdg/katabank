@@ -20,6 +20,13 @@ public class AuthController implements AuthApi {
     @Autowired
     JwtTokenProvider tokenProvider;
 
+    /**
+     * Génère un jeton d'authentification pour accéder
+     * aux requêtes sécurisées
+     *
+     * @param loginRequest Identifiants de connexion
+     * @return ResponseEntity<AuthResponse> : Jeton
+     */
     @Override
     public ResponseEntity<AuthResponse> authenticateUser(AuthRequest loginRequest) {
 

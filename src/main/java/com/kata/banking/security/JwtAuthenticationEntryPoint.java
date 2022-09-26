@@ -14,6 +14,15 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
+    /**
+     * Authentication Entry point
+     *
+     * @param httpServletRequest  requête entrante
+     * @param httpServletResponse reponse de la requête
+     * @param e                   Exception sur L'authentification
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void commence(HttpServletRequest httpServletRequest,
                          HttpServletResponse httpServletResponse,

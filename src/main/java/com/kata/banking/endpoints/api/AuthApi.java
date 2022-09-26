@@ -13,6 +13,14 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/auth")
 public interface AuthApi {
+
+    /**
+     * Génère un jeton d'authentification pour accéder
+     * aux requêtes sécurisées
+     *
+     * @param authRequest Identifiants de connexion
+     * @return ResponseEntity<AuthResponse> : Jeton
+     */
     @PostMapping("/generate-token")
     ResponseEntity<AuthResponse> authenticateUser(@Valid @RequestBody AuthRequest authRequest);
 }

@@ -14,10 +14,21 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
+    /**
+     * Mise à jour du solde d'un compte
+     *
+     * @param account compte mis à jour
+     */
     public void updateAccountPosition(Account account) {
         accountRepository.save(account);
     }
 
+    /**
+     * Récupère les infos d'un compte
+     *
+     * @param accountNumber Numero du compte
+     * @return Optional<Account>
+     */
     public Optional<Account> getAccount(String accountNumber) {
         return accountRepository.getAccountByAccountNumber(accountNumber);
     }

@@ -17,6 +17,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private ClientRepository clientRepository;
 
+    /**
+     * Récupère les informations de l'utilisateur à partir de
+     * son username ou email fourni
+     *
+     * @param usernameOrEmail username ou surname
+     * @return UserDetails
+     */
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String usernameOrEmail) {
@@ -29,7 +36,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         return UserPrincipal.create(client.get());
     }
 
-    // This method is used by JWTAuthenticationFilter
+    /**
+     * Utilisé dans la JwtAuthFilter
+     *
+     * @param id Identifiant de l'utilisateur
+     * @return UserDetails
+     */
     @Transactional
     public UserDetails loadUserById(Integer id) {
 
